@@ -1,0 +1,52 @@
+<h2 class="title">Mes rendez-vous</h2>
+
+@if (isLoading()) {
+  <p class="status">Chargement…</p>
+} @else if (hasError()) {
+  <div class="error" role="alert">
+    <p>Impossible de charger vos rendez-vous.</p>
+    <button type="button" class="button" (click)="loadAppointments()">Réessayer</button>
+  </div>
+} @else {
+  @if (cancelError()) {
+    <p class="error" role="alert">{{ cancelError() }}</p>
+  }
+
+  <ul class="appointments">
+    @for (appointment of sortedAppointments(); track appointment.id) {
+      <li class="appointment">
+        <div class="appointment__info">
+          <p class="appointment__date">
+            {{ appointment.slot.start | date: "EEEE d MMMM 'à' HH:mm" }}
+          </p>
+          <p class="appointment__doctor">
+            <a [routerLink]="['/doctors', appointment.doctor.id]">
+              Dr {{ appointment.doctor.firstName }} {{ appointment.doctor.lastName }}
+            </a>
+            · {{ appointment.doctor.specialty | specialtyLabel }}
+          </p>
+          <p class="appointment__meta">
+            {{ appointment.doctor.address }}, {{ appointment.doctor.city }}
+          </p>
+          <p class="appointment__meta">
+            Patient : {{ appointment.patient.firstName }} {{ appointment.patient.lastName }}
+          </p>
+        </div>
+
+        <button
+          type="button"
+          class="button button--secondary"
+          [disabled]="cancellingId() === appointment.id"
+          (click)="cancel(appointment)"
+        >
+          {{ cancellingId() === appointment.id ? "Annulation…" : "Annuler" }}
+        </button>
+      </li>
+    } @empty {
+      <li class="empty">
+        <p>Vous n’avez aucun rendez-vous.</p>
+        <a routerLink="/" class="button">Trouver un médecin</a>
+      </li>
+    }
+  </ul>
+}

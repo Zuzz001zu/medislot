@@ -1,5 +1,19 @@
 <header class="header">
-  <h1 class="header__title">MediSlot</h1>
+  <a routerLink="/" class="header__logo">MediSlot</a>
+
+  <nav class="header__nav" aria-label="Navigation principale">
+    <a
+      routerLink="/"
+      class="header__link"
+      routerLinkActive="header__link--active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Médecins
+    </a>
+    <a routerLink="/appointments" class="header__link" routerLinkActive="header__link--active">
+      Mes rendez-vous
+    </a>
+  </nav>
 </header>
 
 <main class="main">

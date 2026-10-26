@@ -14,7 +14,7 @@
       Votre rendez-vous avec Dr {{ doctor()?.firstName }} {{ doctor()?.lastName }} le
       {{ slot()?.start | date: "EEEE d MMMM 'à' HH:mm" }} est enregistré.
     </p>
-    <a routerLink="/" class="button">Retour à la liste</a>
+    <a routerLink="/appointments" class="button">Voir mes rendez-vous</a>
   </section>
 } @else if (!slot() || slot()?.isBooked) {
   <div class="error" role="alert">

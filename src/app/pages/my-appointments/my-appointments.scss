@@ -1,0 +1,80 @@
+.title {
+  margin: 0 0 16px;
+  font-size: 24px;
+}
+
+.status {
+  color: #57606a;
+}
+
+.error {
+  margin: 0 0 16px;
+  padding: 16px;
+  border: 1px solid #f5c2c0;
+  border-radius: 8px;
+  background-color: #fff5f5;
+  color: #b42318;
+
+  p {
+    margin: 0 0 12px;
+  }
+}
+
+.appointments {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 720px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.appointment {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+
+  p {
+    margin: 0 0 4px;
+  }
+}
+
+.appointment__date {
+  font-weight: 600;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.appointment__doctor a {
+  color: #0b6bcb;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.appointment__meta {
+  color: #57606a;
+  font-size: 14px;
+}
+
+.empty {
+  padding: 24px;
+  border: 1px dashed #d0d7de;
+  border-radius: 8px;
+  text-align: center;
+
+  p {
+    margin: 0 0 12px;
+  }
+}
