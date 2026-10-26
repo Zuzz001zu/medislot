@@ -1,5 +1,15 @@
 <h2 class="doctor-list__title">Médecins</h2>
 
+@if (isLoading()) {
+<p class="doctor-list__status">Chargement…</p>
+} @else if (hasError()) {
+<div class="doctor-list__error" role="alert">
+  <p>Impossible de charger la liste des médecins.</p>
+  <button type="button" class="button" (click)="loadDoctors()">Réessayer</button>
+</div>
+} @else if (doctors().length === 0) {
+<p class="doctor-list__status">Aucun médecin trouvé.</p>
+} @else {
 <ul class="doctor-list">
   @for (doctor of doctors(); track doctor.id) {
   <li class="doctor-card">
@@ -9,3 +19,4 @@
   </li>
   }
 </ul>
+}

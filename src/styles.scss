@@ -12,3 +12,22 @@ body {
   color: #1f2328;
   background-color: #f6f8fa;
 }
+
+.button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #0b6bcb;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0a5bb0;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #0b6bcb;
+    outline-offset: 2px;
+  }
+}

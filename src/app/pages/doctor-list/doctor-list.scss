@@ -34,3 +34,19 @@
   color: #57606a;
   font-size: 14px;
 }
+
+.doctor-list__status {
+  color: #57606a;
+}
+
+.doctor-list__error {
+  padding: 16px;
+  border: 1px solid #f5c2c0;
+  border-radius: 8px;
+  background-color: #fff5f5;
+  color: #b42318;
+
+  p {
+    margin: 0 0 12px;
+  }
+}
