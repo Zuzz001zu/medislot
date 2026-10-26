@@ -61,7 +61,10 @@
 .slots__date {
   margin: 0 0 8px;
   font-size: 16px;
-  text-transform: capitalize;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
 
 .slots__list {
