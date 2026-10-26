@@ -6,6 +6,14 @@ Book an appointment with a doctor in Western Switzerland: find a doctor, pick a 
 
 The interface is in French, as it would be for patients in Geneva and Lausanne.
 
+<p>
+  <img src="docs/screenshots/doctors.png" alt="Doctor list with search and filters" width="100%">
+</p>
+<p>
+  <img src="docs/screenshots/booking.png" alt="Booking form" width="68%">
+  <img src="docs/screenshots/mobile.png" alt="Mobile view" width="29%">
+</p>
+
 ## Features
 
 - Doctor list with search by name and filters by specialty and city
