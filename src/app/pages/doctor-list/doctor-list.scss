@@ -1,0 +1,36 @@
+.doctor-list__title {
+  margin: 0 0 16px;
+  font-size: 24px;
+}
+
+.doctor-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.doctor-card {
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.doctor-card__name {
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.doctor-card__specialty {
+  margin: 0 0 8px;
+  color: #0b6bcb;
+}
+
+.doctor-card__address {
+  margin: 0;
+  color: #57606a;
+  font-size: 14px;
+}
