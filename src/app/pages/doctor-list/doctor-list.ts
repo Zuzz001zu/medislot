@@ -1,7 +1,10 @@
-import { Component, inject, signal } from "@angular/core";
-import { Doctor } from "../../models/doctor";
+import { Component, computed, inject, signal } from "@angular/core";
+import { Doctor, Specialty } from "../../models/doctor";
+import {
+  SPECIALTY_LABELS,
+  SpecialtyLabelPipe,
+} from "../../pipes/specialty-label.pipe";
 import { DoctorService } from "../../services/doctor.service";
-import { SpecialtyLabelPipe } from "../../pipes/specialty-label.pipe";
 
 @Component({
   selector: "app-doctor-list",
@@ -15,6 +18,32 @@ export class DoctorList {
   protected readonly doctors = signal<Doctor[]>([]);
   protected readonly isLoading = signal(false);
   protected readonly hasError = signal(false);
+
+  protected readonly search = signal("");
+  protected readonly specialty = signal("");
+  protected readonly city = signal("");
+
+  protected readonly specialties = Object.keys(SPECIALTY_LABELS) as Specialty[];
+
+  protected readonly cities = computed(() =>
+    [...new Set(this.doctors().map((doctor) => doctor.city))].sort(),
+  );
+
+  protected readonly filteredDoctors = computed(() => {
+    const search = this.search().trim().toLowerCase();
+    const specialty = this.specialty();
+    const city = this.city();
+
+    return this.doctors().filter((doctor) => {
+      const fullName = `${doctor.firstName} ${doctor.lastName}`.toLowerCase();
+
+      return (
+        (!search || fullName.includes(search)) &&
+        (!specialty || doctor.specialty === specialty) &&
+        (!city || doctor.city === city)
+      );
+    });
+  });
 
   constructor() {
     this.loadDoctors();

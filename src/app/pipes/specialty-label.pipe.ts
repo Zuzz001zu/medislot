@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from "@angular/core";
 import { Specialty } from "../models/doctor";
 
-const SPECIALTY_LABELS: Record<Specialty, string> = {
+export const SPECIALTY_LABELS: Record<Specialty, string> = {
   general: "Médecine générale",
   pediatrics: "Pédiatrie",
   dermatology: "Dermatologie",

@@ -50,3 +50,35 @@
     margin: 0 0 12px;
   }
 }
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.filters__field {
+  display: flex;
+  flex: 1 1 200px;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filters__label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.filters__control {
+  padding: 8px 12px;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  background-color: #fff;
+  font: inherit;
+
+  &:focus-visible {
+    outline: 2px solid #0b6bcb;
+    outline-offset: 1px;
+  }
+}
