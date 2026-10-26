@@ -1,0 +1,103 @@
+<a [routerLink]="['/doctors', id()]" class="back-link">← Retour au médecin</a>
+
+@if (isLoading()) {
+  <p class="status">Chargement…</p>
+} @else if (loadError()) {
+  <div class="error" role="alert">
+    <p>Impossible de charger ce rendez-vous.</p>
+    <button type="button" class="button" (click)="loadData()">Réessayer</button>
+  </div>
+} @else if (isConfirmed()) {
+  <section class="card confirmation" role="status">
+    <h2 class="card__title">Rendez-vous confirmé</h2>
+    <p>
+      Votre rendez-vous avec Dr {{ doctor()?.firstName }} {{ doctor()?.lastName }} le
+      {{ slot()?.start | date: "EEEE d MMMM 'à' HH:mm" }} est enregistré.
+    </p>
+    <a routerLink="/" class="button">Retour à la liste</a>
+  </section>
+} @else if (!slot() || slot()?.isBooked) {
+  <div class="error" role="alert">
+    <p>Ce créneau n’est plus disponible.</p>
+    <a [routerLink]="['/doctors', id()]" class="button">Choisir un autre créneau</a>
+  </div>
+} @else {
+  @if (doctor(); as doctor) {
+    <section class="card summary">
+      <h2 class="card__title">Prendre rendez-vous</h2>
+      <p class="summary__doctor">
+        Dr {{ doctor.firstName }} {{ doctor.lastName }} · {{ doctor.specialty | specialtyLabel }}
+      </p>
+      <p class="summary__date">{{ slot()?.start | date: "EEEE d MMMM 'à' HH:mm" }}</p>
+      <p class="summary__address">{{ doctor.address }}, {{ doctor.city }}</p>
+    </section>
+  }
+
+  <form class="card form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <h3 class="form__title">Vos informations</h3>
+
+    <div class="form__row">
+      <div class="form__field">
+        <label for="firstName">Prénom</label>
+        <input id="firstName" type="text" formControlName="firstName" autocomplete="given-name" />
+        @if (showError("firstName", "required")) {
+          <p class="form__error">Le prénom est obligatoire.</p>
+        }
+      </div>
+
+      <div class="form__field">
+        <label for="lastName">Nom</label>
+        <input id="lastName" type="text" formControlName="lastName" autocomplete="family-name" />
+        @if (showError("lastName", "required")) {
+          <p class="form__error">Le nom est obligatoire.</p>
+        }
+      </div>
+    </div>
+
+    <div class="form__field">
+      <label for="email">E-mail</label>
+      <input id="email" type="email" formControlName="email" autocomplete="email" />
+      @if (showError("email", "required")) {
+        <p class="form__error">L’e-mail est obligatoire.</p>
+      } @else if (showError("email", "email")) {
+        <p class="form__error">Adresse e-mail invalide.</p>
+      }
+    </div>
+
+    <div class="form__row">
+      <div class="form__field">
+        <label for="phone">Téléphone</label>
+        <input
+          id="phone"
+          type="tel"
+          formControlName="phone"
+          placeholder="079 123 45 67"
+          autocomplete="tel"
+        />
+        @if (showError("phone", "required")) {
+          <p class="form__error">Le téléphone est obligatoire.</p>
+        } @else if (showError("phone", "pattern")) {
+          <p class="form__error">Format attendu : 079 123 45 67 ou +41 79 123 45 67.</p>
+        }
+      </div>
+
+      <div class="form__field">
+        <label for="birthDate">Date de naissance</label>
+        <input id="birthDate" type="date" formControlName="birthDate" autocomplete="bday" />
+        @if (showError("birthDate", "required")) {
+          <p class="form__error">La date de naissance est obligatoire.</p>
+        } @else if (showError("birthDate", "futureDate")) {
+          <p class="form__error">La date doit être dans le passé.</p>
+        }
+      </div>
+    </div>
+
+    @if (submitError()) {
+      <p class="form__submit-error" role="alert">{{ submitError() }}</p>
+    }
+
+    <button type="submit" class="button form__submit" [disabled]="isSubmitting()">
+      {{ isSubmitting() ? "Envoi…" : "Confirmer le rendez-vous" }}
+    </button>
+  </form>
+}

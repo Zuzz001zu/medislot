@@ -24,9 +24,15 @@
     <ul class="slots__list">
       @for (slot of day.slots; track slot.id) {
       <li>
-        <button type="button" class="slot" [disabled]="slot.isBooked">
+        @if (slot.isBooked) {
+        <span class="slot slot--booked" title="Créneau déjà réservé">
           {{ slot.start | date: 'HH:mm' }}
-        </button>
+        </span>
+        } @else {
+        <a class="slot" [routerLink]="['book', slot.id]">
+          {{ slot.start | date: 'HH:mm' }}
+        </a>
+        }
       </li>
       }
     </ul>

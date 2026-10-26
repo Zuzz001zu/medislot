@@ -14,12 +14,14 @@ body {
 }
 
 .button {
+  display: inline-block;
   padding: 8px 16px;
   border: none;
   border-radius: 6px;
   background-color: #0b6bcb;
   color: #fff;
   font: inherit;
+  text-decoration: none;
   cursor: pointer;
 
   &:hover {
