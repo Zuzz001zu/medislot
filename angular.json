@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "helpdesk-web": {
+    "medislot": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -61,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "helpdesk-web:build:production"
+              "buildTarget": "medislot:build:production"
             },
             "development": {
-              "buildTarget": "helpdesk-web:build:development"
+              "buildTarget": "medislot:build:development"
             }
           },
           "defaultConfiguration": "development"
