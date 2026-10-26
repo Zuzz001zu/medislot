@@ -1,3 +1,6 @@
+import { Doctor } from "./doctor";
+import { Slot } from "./slot";
+
 export interface Patient {
   firstName: string;
   lastName: string;
@@ -12,4 +15,11 @@ export interface Appointment {
   slotId: number;
   patient: Patient;
   createdAt: string;
+}
+
+export type NewAppointment = Omit<Appointment, "id">;
+
+export interface AppointmentWithDetails extends Appointment {
+  doctor: Doctor;
+  slot: Slot;
 }
