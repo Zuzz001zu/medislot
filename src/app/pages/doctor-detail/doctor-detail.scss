@@ -1,0 +1,96 @@
+.back-link {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: #0b6bcb;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.status {
+  color: #57606a;
+}
+
+.error {
+  padding: 16px;
+  border: 1px solid #f5c2c0;
+  border-radius: 8px;
+  background-color: #fff5f5;
+  color: #b42318;
+
+  p {
+    margin: 0 0 12px;
+  }
+}
+
+.doctor,
+.slots {
+  margin-bottom: 16px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.doctor__name {
+  margin: 0 0 4px;
+  font-size: 24px;
+}
+
+.doctor__specialty {
+  margin: 0 0 12px;
+  color: #0b6bcb;
+}
+
+.doctor__info {
+  margin: 0 0 4px;
+  color: #57606a;
+}
+
+.slots__title {
+  margin: 0 0 16px;
+  font-size: 20px;
+}
+
+.slots__day + .slots__day {
+  margin-top: 16px;
+}
+
+.slots__date {
+  margin: 0 0 8px;
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+.slots__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.slot {
+  min-width: 72px;
+  padding: 8px 12px;
+  border: 1px solid #0b6bcb;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #0b6bcb;
+  font: inherit;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background-color: #eaf3fc;
+  }
+
+  &:disabled {
+    border-color: #d0d7de;
+    color: #8c959f;
+    text-decoration: line-through;
+    cursor: not-allowed;
+  }
+}

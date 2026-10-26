@@ -41,7 +41,11 @@
 <ul class="doctor-list">
   @for (doctor of filteredDoctors(); track doctor.id) {
   <li class="doctor-card">
-    <h3 class="doctor-card__name">Dr {{ doctor.firstName }} {{ doctor.lastName }}</h3>
+    <h3 class="doctor-card__name">
+      <a class="doctor-card__link" [routerLink]="['/doctors', doctor.id]">
+        Dr {{ doctor.firstName }} {{ doctor.lastName }}
+      </a>
+    </h3>
     <p class="doctor-card__specialty">{{ doctor.specialty | specialtyLabel }}</p>
     <p class="doctor-card__address">{{ doctor.address }}, {{ doctor.city }}</p>
   </li>

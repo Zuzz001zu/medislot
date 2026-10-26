@@ -1,0 +1,38 @@
+<a routerLink="/" class="back-link">← Retour à la liste</a>
+
+@if (isLoading()) {
+<p class="status">Chargement…</p>
+} @else if (errorMessage()) {
+<div class="error" role="alert">
+  <p>{{ errorMessage() }}</p>
+  <button type="button" class="button" (click)="loadDoctor()">Réessayer</button>
+</div>
+} @else if (doctor(); as doctor) {
+<section class="doctor">
+  <h2 class="doctor__name">Dr {{ doctor.firstName }} {{ doctor.lastName }}</h2>
+  <p class="doctor__specialty">{{ doctor.specialty | specialtyLabel }}</p>
+  <p class="doctor__info">{{ doctor.address }}, {{ doctor.city }}</p>
+  <p class="doctor__info">Langues : {{ doctor.languages.join(', ') | uppercase }}</p>
+</section>
+
+<section class="slots">
+  <h3 class="slots__title">Disponibilités</h3>
+
+  @for (day of slotsByDay(); track day.date) {
+  <div class="slots__day">
+    <h4 class="slots__date">{{ day.date | date: 'EEEE d MMMM' }}</h4>
+    <ul class="slots__list">
+      @for (slot of day.slots; track slot.id) {
+      <li>
+        <button type="button" class="slot" [disabled]="slot.isBooked">
+          {{ slot.start | date: 'HH:mm' }}
+        </button>
+      </li>
+      }
+    </ul>
+  </div>
+  } @empty {
+  <p class="status">Aucune disponibilité pour le moment.</p>
+  }
+</section>
+}

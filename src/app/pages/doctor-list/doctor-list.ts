@@ -5,10 +5,11 @@ import {
   SpecialtyLabelPipe,
 } from "../../pipes/specialty-label.pipe";
 import { DoctorService } from "../../services/doctor.service";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: "app-doctor-list",
-  imports: [SpecialtyLabelPipe],
+  imports: [RouterLink, SpecialtyLabelPipe],
   templateUrl: "./doctor-list.html",
   styleUrl: "./doctor-list.scss",
 })
