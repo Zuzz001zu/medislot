@@ -1,0 +1,25 @@
+{
+  "doctors": [
+    { "id": 1, "firstName": "Claire", "lastName": "Dubois", "specialty": "general", "city": "Genève", "address": "Rue de Carouge 42", "languages": ["fr", "en"] },
+    { "id": 2, "firstName": "Marc", "lastName": "Favre", "specialty": "pediatrics", "city": "Genève", "address": "Boulevard Carl-Vogt 18", "languages": ["fr"] },
+    { "id": 3, "firstName": "Anna", "lastName": "Keller", "specialty": "dermatology", "city": "Lausanne", "address": "Avenue de la Gare 7", "languages": ["fr", "de", "en"] },
+    { "id": 4, "firstName": "Luca", "lastName": "Rossi", "specialty": "dentistry", "city": "Genève", "address": "Rue du Rhône 65", "languages": ["fr", "it"] },
+    { "id": 5, "firstName": "Sophie", "lastName": "Martin", "specialty": "gynecology", "city": "Nyon", "address": "Rue de la Gare 3", "languages": ["fr", "en"] },
+    { "id": 6, "firstName": "Thomas", "lastName": "Meier", "specialty": "ophthalmology", "city": "Lausanne", "address": "Rue du Bugnon 21", "languages": ["de", "fr"] }
+  ],
+  "slots": [
+    { "id": 1, "doctorId": 1, "start": "2026-11-09T08:30:00", "isBooked": false },
+    { "id": 2, "doctorId": 1, "start": "2026-11-09T09:00:00", "isBooked": true },
+    { "id": 3, "doctorId": 1, "start": "2026-11-10T14:00:00", "isBooked": false },
+    { "id": 4, "doctorId": 2, "start": "2026-11-09T10:00:00", "isBooked": false },
+    { "id": 5, "doctorId": 2, "start": "2026-11-11T16:30:00", "isBooked": false },
+    { "id": 6, "doctorId": 3, "start": "2026-11-10T09:15:00", "isBooked": false },
+    { "id": 7, "doctorId": 3, "start": "2026-11-10T11:45:00", "isBooked": true },
+    { "id": 8, "doctorId": 4, "start": "2026-11-09T13:00:00", "isBooked": false },
+    { "id": 9, "doctorId": 4, "start": "2026-11-12T08:00:00", "isBooked": false },
+    { "id": 10, "doctorId": 5, "start": "2026-11-11T10:30:00", "isBooked": false },
+    { "id": 11, "doctorId": 6, "start": "2026-11-12T15:00:00", "isBooked": false },
+    { "id": 12, "doctorId": 6, "start": "2026-11-13T09:30:00", "isBooked": false }
+  ],
+  "appointments": []
+}
