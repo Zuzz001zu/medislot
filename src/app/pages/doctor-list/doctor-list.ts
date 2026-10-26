@@ -1,9 +1,11 @@
 import { Component, inject, signal } from "@angular/core";
 import { Doctor } from "../../models/doctor";
 import { DoctorService } from "../../services/doctor.service";
+import { SpecialtyLabelPipe } from "../../pipes/specialty-label.pipe";
 
 @Component({
   selector: "app-doctor-list",
+  imports: [SpecialtyLabelPipe],
   templateUrl: "./doctor-list.html",
   styleUrl: "./doctor-list.scss",
 })
