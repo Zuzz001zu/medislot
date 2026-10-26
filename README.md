@@ -1,59 +1,66 @@
-# HelpdeskWeb
+# MediSlot
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.4.
+Book an appointment with a doctor in Western Switzerland: find a doctor, pick a free slot, fill in your details, manage your appointments.
 
-## Development server
+**Live demo:** https://zuzz001zu.github.io/medislot/
 
-To start a local development server, run:
+The interface is in French, as it would be for patients in Geneva and Lausanne.
 
-```bash
-ng serve
-```
+## Features
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Doctor list with search by name and filters by specialty and city
+- Doctor page with available slots grouped by day (dates in Swiss French format)
+- Booking form with validation: required fields, e-mail, Swiss phone number, birth date in the past
+- "Mes rendez-vous" page: list of booked appointments, cancellation frees the slot again
+- Loading, empty and error states on every page, with a retry button
+- Responsive layout, keyboard focus styles, labelled form fields
 
-## Code scaffolding
+## Stack
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Angular 22 (standalone components, signals, new control flow `@if` / `@for`)
+- TypeScript
+- SCSS with BEM naming
+- Reactive Forms with custom validators
+- REST API: [json-server](https://github.com/typicode/json-server) locally
+- Vitest for unit tests
+- GitHub Actions: tests and build on every push, deployment to GitHub Pages
 
-```bash
-ng generate component component-name
-```
+## Run locally
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+Requires Node.js 20 or later.
 
 ```bash
-ng test
+npm install
+npm run api     # REST API on http://localhost:3000
+npm start       # app on http://localhost:4200
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Run the two commands in separate terminals. Bookings made while testing go to `mock/db.local.json`, which is not tracked by git; restarting the API resets the data.
 
 ```bash
-ng e2e
+npm test        # unit tests
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## How it works
 
-## Additional Resources
+```
+src/app/
+  models/       Doctor, Slot, Appointment interfaces
+  services/     HTTP calls (DoctorService, AppointmentService)
+  pages/        doctor-list, doctor-detail, booking, my-appointments
+  pipes/        specialty code -> French label
+  validators/   Swiss phone pattern, past date
+  mock-api/     in-browser API used by the online demo
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+A few decisions worth explaining:
+
+- **Booking a slot.** json-server has no transactions, so `AppointmentService.book()` reads the slot again right before booking. If someone took it in the meantime, the user gets a clear message instead of a double booking. With a real backend this check would live on the server.
+- **Filtering on the client.** There are only a handful of doctors, so filtering with a `computed` signal is instant. With thousands of doctors I would send the filters as query params and debounce the search input.
+- **Online demo without a backend.** GitHub Pages only serves static files. In the production build an HTTP interceptor answers the same requests as json-server and keeps the data in `localStorage`, so the services and components are exactly the same in both modes.
+
+## Possible next steps
+
+- English / German translations
+- Real backend (FastAPI + PostgreSQL)
+- End-to-end tests with Playwright
